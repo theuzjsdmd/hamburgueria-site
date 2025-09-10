@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="A melhor hamburgueria da cidade, com hambúrgueres artesanais e ingredientes de qualidade." />
+    <meta name="keywords" content="hamburgueria, hambúrgueres artesanais, lanches, delivery" />
+    <meta name="author" content="Hamburgueria Artesanal" />
+
+    <title>Hamburgueria Artesanal</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #1a1a1a;
+            color: #333;
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50L0 25L50 0L100 25L50 50Z' fill='%23333' fill-opacity='0.05'/%3E%3C/svg%3E");
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(160, 82, 45, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(210, 105, 30, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 70% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 20%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Cabeçalho */
+        .cabecalho {
+            background-color: rgba(26, 26, 26, 0.9);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .cabecalho .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .menu-principal {
+            position: relative;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .menu-lista {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu-lista li {
+            margin-left: 20px;
+        }
+        
+        .menu-lista a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        .menu-lista a:hover {
+            color: #ff9900;
+            background-color: rgba(255, 153, 0, 0.1);
+        }
+        
+        /* Carrossel de Banners */
+        .carrossel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .slides {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slide {
+            width: 25%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-conteudo {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 30px;
+        }
+        
+        .slide-conteudo h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slide-conteudo p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff9900;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 153, 0, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: #e68a00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 153, 0, 0.4);
+        }
+        
+        .carrossel-controles {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+        
+        .controle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .controle.ativo {
+            background-color: #ff9900;
+        }
+        
+        .carrossel-seta {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 10;
+        }
+        
+        .carrossel-seta:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .carrossel-seta.esquerda {
+            left: 20px;
+        }
+        
+        .carrossel-seta.direita {
+            right: 20px;
+        }
+        
+        /* Produtos em Destaque */
+        .produtos-em-destaque {
+            padding: 40px 0;
+        }
+        
+        .produtos-em-destaque h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .grade-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .produto {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .produto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .produto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .produto-info {
+            padding: 20px;
+        }
+        
+        .produto-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .produto-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .produto-preco {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff9900;
+            margin-bottom: 15px;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: rgba(26, 26, 26, 0.9);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            backdrop-filter: blur(10px);
+        }
+        
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-icons {
+            margin-bottom: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #ff9900;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Padrões de hambúrguer no fundo */
+        .hamburger-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.03;
+        }
+        
+        .hamburger-item {
+            position: absolute;
+            background-color: #8B4513;
+            border-radius: 50%;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .slide-conteudo h2 {
+                font-size: 2rem;
+            }
+            
+            .slide-conteudo p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .menu-lista {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: rgba(26, 26, 26, 0.95);
+                flex-direction: column;
+                width: 200px;
+                padding: 15px;
+                border-radius: 4px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                display: none;
+                backdrop-filter: blur(10px);
+            }
+            
+            .menu-lista.ativo {
+                display: flex;
+            }
+            
+            .menu-lista li {
+                margin: 10px 0;
+            }
+            
+            .carrossel {
+                height: 400px;
+            }
+            
+            .carrossel-seta {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .carrossel {
+                height: 300px;
+            }
+            
+            .slide-conteudo {
+                padding: 15px;
+            }
+            
+            .slide-conteudo h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="img/hamburgueria.png" alt="Logo da Hamburgueria Artesanal">
+            </a>
+            
+            <nav class="menu-principal">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <ul class="menu-lista">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quem.html">Quem Somos</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Carrossel de Banners -->
+        <div class="carrossel">
+            <div class="slides">
+                <!-- Banner 1 -->
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Hambúrguer especial da casa">
+                    <div class="slide-conteudo">
+                        <h2>Hambúrguer Artesanal Premium</h2>
+                        <p>Experimente nosso carro-chefe com blend especial, queijo cheddar e bacon crocante.</p>
+                        <a href="menu.html" class="btn">Ver Cardápio</a>
+                    </div>
+                </div>
+                
+                <!-- Banner 2 -->
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=1352&q=80" alt="Promoção de combos">
+                    <div class="slide-conteudo">
+                        <h2>Combos Imperdíveis</h2>
+                        <p>Aproveite nossos combos completos com hambúrguer, batata e refrigerante por um preço especial.</p>
+                        <a href="menu.html" class="btn">Ver Promoções</a>
+                    </div>
+                </div>
+                
+                <!-- Banner 3 -->
+                <div class="slide">
+                    <img src="data:image/jpeg;base64,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" alt="Delivery rápido">
+                    <div class="slide-conteudo">
+                        <h2>Delivery Rápido</h2>
+                        <p>Peça e receba em casa em até 30 minutos. Frete grátis para a região central.</p>
+                        <a href="contato.html" class="btn">Fazer Pedido</a>
+                    </div>
+                </div>
+                
+                <!-- Banner 4 -->
+                <div class="slide">
+                    <img src="https://opopularpr.com.br/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-08-at-10.23.34-2-1200x900.jpeg" alt="Espaço kids">
+                    <div class="slide-conteudo">
+                        <h2>Espaço Kids</h2>
+                        <p>Ambiente especial para as crianças, com menu infantil e atividades divertidas.</p>
+                        <a href="quem.html" class="btn">Conhecer</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles do carrossel -->
+            <div class="carrossel-controles">
+                <div class="controle ativo" data-index="0"></div>
+                <div class="controle" data-index="1"></div>
+                <div class="controle" data-index="2"></div>
+                <div class="controle" data-index="3"></div>
+            </div>
+            
+            <!-- Setas de navegação -->
+            <div class="carrossel-seta esquerda">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="carrossel-seta direita">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Produtos em Destaque -->
+        <section class="produtos-em-destaque">
+            <div class="container">
+                <h2>Nossos Destaques</h2>
+                <div class="grade-produtos">
+                    <!-- Produto 1 -->
+                    <div class="produto">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=602&q=80" alt="Clássico Artesanal">
+                        <div class="produto-info">
+                            <h3>Clássico Artesanal</h3>
+                            <p>Blend da casa, alface, tomate, queijo e molho especial.</p>
+                            <div class="produto-preco">R$ 24,90</div>
+                            <a href="#" class="btn">Adicionar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Produto 2 -->
+                    <div class="produto">
+                        <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&auto=format&fit=crop&w=562&q=80" alt="BBQ Bacon">
+                        <div class="produto-info">
+                            <h3>BBQ Bacon</h3>
+                            <p>Hambúrguer, queijo cheddar, bacon crocante e molho barbecue.</p>
+                            <div class="produto-preco">R$ 28,90</div>
+                            <a href="#" class="btn">Adicionar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Produto 3 -->
+                    <div class="produto">
+                        <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vegetariano">
+                        <div class="produto-info">
+                            <h3>Vegetariano</h3>
+                            <p>Hambúrguer de grão-de-bico, abobrinha, berinjela e molho de iogurte.</p>
+                            <div class="produto-preco">R$ 26,90</div>
+                            <a href="#" class="btn">Adicionar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" aria-label="Link para o Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Link para o Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com" target="_blank" aria-label="Link para o X/Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>© 2025 Hamburgueria Artesanal - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Menu mobile toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.menu-lista').classList.toggle('ativo');
+        });
+        
+        // Carrossel de banners
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const controls = document.querySelectorAll('.controle');
+        const totalSlides = slides.length;
+        const slideContainer = document.querySelector('.slides');
+        
+        // Função para mudar slide
+        function goToSlide(index) {
+            if (index < 0) {
+                index = totalSlides - 1;
+            } else if (index >= totalSlides) {
+                index = 0;
+            }
+            
+            slideContainer.style.transform = `translateX(-${index * 25}%)`;
+            controls[currentSlide].classList.remove('ativo');
+            currentSlide = index;
+            controls[currentSlide].classList.add('ativo');
+        }
+        
+        // Adicionar eventos aos controles
+        controls.forEach((control, index) => {
+            control.addEventListener('click', () => {
+                goToSlide(index);
+            });
+        });
+        
+        // Eventos para as setas
+        document.querySelector('.carrossel-seta.esquerda').addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
+        
+        document.querySelector('.carrossel-seta.direita').addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+        
+        // Auto-play para o carrossel
+        let intervalId = setInterval(() => {
+            goToSlide(currentSlide + 1);
+        }, 5000);
+        
+        // Pausar auto-play quando o mouse estiver sobre o carrossel
+        document.querySelector('.carrossel').addEventListener('mouseenter', () => {
+            clearInterval(intervalId);
+        });
+        
+        document.querySelector('.carrossel').addEventListener('mouseleave', () => {
+            intervalId = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+        });
+        
+        // Criar padrão de hambúrguer no fundo
+        function criarPadraoHamburguer() {
+            const patternContainer = document.createElement('div');
+            patternContainer.className = 'hamburger-pattern';
+            
+            // Adicionar elementos de padrão
+            for (let i = 0; i < 20; i++) {
+                const item = document.createElement('div');
+                item.className = 'hamburger-item';
+                
+                // Tamanhos e posições aleatórias
+                const size = Math.random() * 50 + 10;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                item.style.width = `${size}px`;
+                item.style.height = `${size}px`;
+                item.style.left = `${posX}%`;
+                item.style.top = `${posY}%`;
+                
+                patternContainer.appendChild(item);
+            }
+            
+            document.body.appendChild(patternContainer);
+        }
+        
+        // Executar quando a página carregar
+        window.addEventListener('load', criarPadraoHamburguer);
+    </script>
+</body>
+</html>
